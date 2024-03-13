@@ -5,6 +5,7 @@ import Doctor from './Doctor';
 import Patient from './Patient';
 import Navigation from './Navigation';
 import EditPatient from './EditPatient';
+import './App.css';
 function App(){
   return(
     <div>

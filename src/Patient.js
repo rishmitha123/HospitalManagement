@@ -62,6 +62,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const PatientForm = () => {
+   //wrapping all the details in useState or else you can use seperately like cont [name,setName]=useState(''); and same fro all the data
   const [patientData, setPatientData] = useState({
     name: '',
     weight: '',
@@ -72,8 +73,15 @@ const PatientForm = () => {
   });
 
   const handleChange = (e) => {
+    //here name indicates the name,weight,gender,age,disease,doctorId etc
+       //value means current value what you entered in the input field by user 
+       //e.target means current value
     const { name, value } = e.target;
+    //so updated value through e.target is updated and added to the spread operator(...)patientsdata
     setPatientData({ ...patientData, [name]: value });
+    //[name]:property like age,disease etc
+         //value:23,fever etc
+
   };
 
   const handleSubmit = async (e) => {

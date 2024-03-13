@@ -59,9 +59,11 @@ const EditPatient = ({ patientId, onClose, onUpdate }) => {
   const [patientData, setPatientData] = useState({});
 
   useEffect(() => {
+      //bringing the patient details from the api to the patient.js component
     //get
     const fetchPatientData = async () => {
       try {
+         //fetching the data based on patientId
         const response = await axios.get(`https://backendhospital-ji3g.onrender.com/patients/${patientId}`);
         setPatientData(response.data);
       } catch (error) {
