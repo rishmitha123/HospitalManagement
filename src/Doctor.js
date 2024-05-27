@@ -8,7 +8,7 @@ const Doctor = () => {
     //get
     const fetchDoctors = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/doctor');
+        const response = await axios.get(`http://hms-env.eba-tvxwbfse.eu-north-1.elasticbeanstalk.com/doctor`);
         setDoctors(response.data);
       } catch (error) {
         console.error('Error fetching doctors:', error);
