@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import EditPatient from './EditPatient'; 
+import EditPatient from './EditPatient';
 
 const Home = () => {
   const [patients, setPatients] = useState([]);
@@ -12,8 +12,8 @@ const Home = () => {
 
     const fetchPatientsAndDoctors = async () => {
       try {
-        const patientsResponse = await axios.get('https://backendhospital-ji3g.onrender.com/patients'); // Replace with your actual endpoint
-        const doctorsResponse = await axios.get('https://backendhospital-ji3g.onrender.com/doctors'); // Replace with your actual endpoint
+        const patientsResponse = await axios.get('http://localhost:8080/patient'); // Replace with your actual endpoint
+        const doctorsResponse = await axios.get('http://localhost:8080/doctor'); // Replace with your actual endpoint
         setPatients(patientsResponse.data);
         setDoctors(doctorsResponse.data);
       } catch (error) {
@@ -47,7 +47,7 @@ const Home = () => {
 
   const handleDelete = async (patientId) => {
     try {
-      await axios.delete(`https://backendhospital-ji3g.onrender.com/patients/${patientId}`);
+      await axios.delete(`http://localhost:8080/patient/${patientId}`);
 
       setPatients((prevPatients) => prevPatients.filter((patient) => patient.id !== patientId));
     } catch (error) {
@@ -64,7 +64,7 @@ const Home = () => {
           <option value={null}>All Doctors</option>
           {doctors.map((doctor) => (
             <option key={doctor.id} value={doctor.id}>
-              {doctor.name} - {doctor.specialization}
+              {doctor.name} - {doctor.speciality}
             </option>
           ))}
         </select>
@@ -91,7 +91,7 @@ const Home = () => {
                 <td>{patient.age}</td>
                 <td>{patient.disease}</td>
                 <td>
-                  {patient.doctor?.name} - {patient.doctor?.specialization}
+                  {patient.doctor?.name} - {patient.doctor?.speciality}
                 </td>
                 <td>
                   <button onClick={() => handleEdit(patient.id)}>Edit</button>
